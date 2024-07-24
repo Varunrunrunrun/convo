@@ -38,10 +38,48 @@
   height: 100%;
 }
 
+.str-video__call-controls {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+
+  @media only screen and (max-width: 425px) {
+    width: 100%;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
 .str-video__call-controls__button {
-  height: 40px;
+  height: 30px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid slategray !important;
 }
 
+.str-video__video-preview-container {
+  @media only screen and (max-width: 768px) {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+.str-video__participant-listing-item__display-name {
+  width: 100px !important;
+  white-space: nowrap;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
+.str-video__composite-button__button-group {
+  border: 1px solid slategray !important;
+  display: flex;
+  justify-content: center;
+}
+
+.str-video__call-controls__button--variant-danger {
+  width: 100% !important;
+  height: 100% !important;
+}
 .glassmorphism {
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(4px);
@@ -51,6 +89,12 @@
   background: rgba(18, 17, 17, 0.25);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
+}
+
+.str-video__video-preview-container
+  .str-video__video-preview
+  .str-video__video-preview--mirror {
+  height: 300px !important;
 }
 
 /* ==== clerk class override ===== */

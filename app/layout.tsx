@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";
 
-// import "@stream-io/video-react-sdk/dist/css/styles.css";
+import "@stream-io/video-react-sdk/dist/css/styles.css";
 // import "react-datepicker/dist/react-datepicker.css";
 import "./globals.css";
 import { Toaster } from "sonner";
@@ -39,7 +39,7 @@ export default function RootLayout({
         }}
       >
         <body className={`${inter.className} bg-dark-2`}>
-          <Toaster richColors />
+          <Toaster richColors position="top-center" />
           {children}
         </body>
       </ClerkProvider>
