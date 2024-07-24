@@ -2,6 +2,10 @@
 import React, { useState } from "react";
 import HomeCard, { HomeCardProps } from "./HomeCard";
 import { useRouter } from "next/navigation";
+import MeetingModal from "./MeetingModal";
+import { toast } from "sonner";
+import { useUser } from "@clerk/nextjs";
+import { useStreamVideoClient } from "@stream-io/video-react-sdk";
 
 const MeetingTypeList = () => {
   const homeCards: HomeCardProps[] = [
@@ -38,6 +42,19 @@ const MeetingTypeList = () => {
   const [meetingState, setMeetingState] = useState<
     "isScheduleMeeting" | "isJoiningMeeting" | "isInstantMeeting" | undefined
   >(undefined);
+
+  const { user } = useUser();
+  const client = useStreamVideoClient();
+
+  const createMeeting = async () => {
+    if (!client || !user) return;
+
+    try {
+      const id = crypto.randomUUID();
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <section className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-4">
       {homeCards.map((card, index) => (
@@ -50,6 +67,15 @@ const MeetingTypeList = () => {
           handleClick={card.handleClick}
         />
       ))}
+
+      <MeetingModal
+        onClose={() => setMeetingState(undefined)}
+        isOpen={meetingState === "isInstantMeeting"}
+        title="Start an instant meeting"
+        className="text-center"
+        buttonText="Start Meeting"
+        handleClick={createMeeting}
+      />
     </section>
   );
 };
